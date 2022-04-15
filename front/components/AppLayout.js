@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Logo from '../public/Logo.svg';
+import LoginForm from './LoginForm';
 
-const AppLayout = () => {
+const AppLayout = ({ children }) => {
   return (
     <>
       {/* Nav */}
@@ -33,7 +34,7 @@ const AppLayout = () => {
 
             {/* Menu Right */}
             <div className="hidden md:flex items-center space-x-1 px-10">
-              <div className="py-5 px-3">LOGIN</div> {/* modal로넣기 */}
+              <div className="py-5 px-3">LOGIN</div> {/* modal */}
               <div>
                 <Link href="/signup">
                   <a className="py-2 px-3 bg-yellow-400 hover:bg-yellow-300 text-yellow-900 hover:text-yellow-800 rounded transition duration-300">
@@ -52,15 +53,11 @@ const AppLayout = () => {
       </nav>
 
       {/* Main */}
-      <main className="grid grid-cols-12 gap-4">
-        <div className="col-span-2">
-          1
-        </div>
-        <div className="col-span-8">
-          2
-        </div>
-        <div className="col-span-2">
-          3
+      <main className="flex mt-8">
+        <div className='flex-1'>
+          <div className='flex flex-wrap justify-center'>
+            {children}
+          </div>
         </div>
       </main>
     </>
