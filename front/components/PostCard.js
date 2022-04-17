@@ -1,7 +1,7 @@
 import React from 'react'
 import { Avatar } from 'antd';
 
-const PostCard = ({ data, title, content }) => {
+const PostCard = ({ data, title, content, author, like }) => {
 
   return (
     <div className="flex w-80 bg-zinc-50 rounded m-4 overflow-hidden flex-col shadow-xl">
@@ -28,10 +28,10 @@ const PostCard = ({ data, title, content }) => {
       <div className="flex justify-between py-2.5 px-4 border-0 border-t border-gray-200 border-solid leading-normal text-xs ">
         <a href="#" className='flex items-center '>
           <Avatar>nickname </Avatar>
-          <span className='ml-2'>writer</span>
+          <span className='ml-2'>{author}</span>
         </a>
         <div className="flex items-center">
-          <span>Like</span>
+          <span>{like}</span>
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 
-function useInput() {
-  const [value, setValue] = useState( '' );
+function useInput( initialValue = null) {
+  const [value, setValue] = useState( initialValue );
   
   const onChangeHandle = useCallback( (e) => {
     setValue( e.target.value );

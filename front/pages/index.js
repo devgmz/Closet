@@ -16,6 +16,8 @@ export default function Home() {
         postId: item.id,
         title: item.title,
         content: item.body,
+        author: 'nickname',
+        like: 0,
       }
     } )
     setPostData( initData );

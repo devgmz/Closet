@@ -1,12 +1,12 @@
 import Link from "next/link";
 import Logo from '../public/Logo.svg';
-import LoginForm from './LoginForm';
+import LoginModal from './LoginModal';
 
-const AppLayout = ({ children }) => {
+const AppLayout = ({ children, props }) => {
   return (
     <>
       {/* Nav */}
-      <nav className="bg-slate-50 border-b border-gray-500">
+      <nav className="bg-white/100 border-b border-gray-200">
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex justify-between">
             {/* Menu Left */}
@@ -28,13 +28,11 @@ const AppLayout = ({ children }) => {
               </div>
             </div>
 
-            <div className="z-30 flex items-center pr-24">
-              <input type="text" placeholder="검색" className="border border-gray-500 bg-gray-300 pr-12 mt-1" />
-            </div>
-
             {/* Menu Right */}
             <div className="hidden md:flex items-center space-x-1 px-10">
-              <div className="py-5 px-3">LOGIN</div> {/* modal */}
+              <div className="py-5 px-3">
+                <LoginModal {...props}/>
+              </div> {/* modal */}
               <div>
                 <Link href="/signup">
                   <a className="py-2 px-3 bg-yellow-400 hover:bg-yellow-300 text-yellow-900 hover:text-yellow-800 rounded transition duration-300">
