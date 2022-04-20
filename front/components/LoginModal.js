@@ -1,7 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import useInput from '../hooks/useInput';
 import Modal from 'react-modal';
 import Link from 'next/link';
+
+import { UserOutlined } from '@ant-design/icons'
+import { Avatar } from 'antd';
+import useInput from '../hooks/useInput';
 
 Modal.setAppElement( '#modal-root' );
 
@@ -17,10 +20,11 @@ const customStyles = {
   },
 };
 
-const LoginModal = () => {
+const LoginModal = ( { setLogin }) => {
   const [modalShow, setModalShow] = useState(false);
   const [loginEmail, onChangeEmail] = useInput( '' );
   const [loginPassword, onChangePassword] = useInput( '' );
+  const [isLogIn, setIsLogin] = useState( false );
 
   const openModal = useCallback( () => {
     setModalShow( true );
@@ -28,11 +32,13 @@ const LoginModal = () => {
 
   const closeModal = useCallback( () => {
     setModalShow( false );
+    setIsLogin( true );
+    setLogin(true);
   } )
 
   const loginOnSubmit = useCallback(() =>{
-    // Action
-    // loginEmail, loginPassword
+    setModalShow(false);
+    setIsLogin(true);
   },[])
   
   useEffect( () => {
@@ -46,7 +52,9 @@ const LoginModal = () => {
 
   return (
     <div>
-      <button onClick={openModal}>LOGIN</button>
+      {isLogIn
+        ? <Avatar style={{backgroundColor: '#ff4500'}}>GH</Avatar>
+        : <button onClick={openModal}>LOGIN</button>}
       <Modal
         isOpen={modalShow}
         onRequestClose={closeModal}
@@ -69,10 +77,7 @@ const LoginModal = () => {
             <input type="password" name='user-password' value={loginPassword} onChange={onChangePassword} placeholder='비밀번호를 입력하세요.'
             className='border w-full mb-4 mt-0.5 h-7' required/>
           </div>
-            <button onClick={(e)=> {
-              e.preventDefault();
-              console.log(loginEmail, loginPassword)
-            }} type='submit' className='w-80 bg-emerald-300 hover:bg-emerald-500 h-8 font-bold text-lg'>로그인</button>
+            <button onClick={closeModal} type='submit' className='w-80 bg-emerald-300 hover:bg-emerald-500 h-8 font-bold text-lg'>로그인</button>
           
           <div>
             <h1 className='mt-10 font-bold text-lg text-center'>소셜 로그인</h1>
